@@ -75,12 +75,16 @@ function externalAssets(arg: unknown): Plugin {
     },
 
     async load(id) {
-      if (!idFilter(id)) return null;
+      const [assetId, query] = id.split("?");
+
+      // don't interfere with other query params (ex.: ?url)
+      if (query && query !== "external") return null;
+      if (!idFilter(assetId)) return null;
 
       const ref = this.emitFile({
         type: "asset",
-        name: path.basename(id),
-        source: await fs.readFile(id),
+        name: path.basename(assetId),
+        source: await fs.readFile(assetId),
       });
 
       return `export * from "${PREFIX}${ref}";
