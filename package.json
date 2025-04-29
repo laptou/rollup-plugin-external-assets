@@ -14,8 +14,7 @@
     "coverage": "codecov",
     "clean": "rimraf dist tests/coverage",
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
-    "postinstall": "rimraf dist && rollup -c --bundleConfigAsCjs",
-    "prepare": "husky"
+    "prepare": "rimraf dist && rollup -c --bundleConfigAsCjs",
   },
   "repository": {
     "type": "git",
